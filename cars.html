@@ -1,0 +1,238 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NISHAL CARS - Collection</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#111;
+    color:white;
+}
+
+nav{
+    height:75px;
+    padding:0 50px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(20,20,20,.75);
+    backdrop-filter:blur(12px);
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:red;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:8px;
+}
+
+nav li a{
+    color:white;
+    text-decoration:none;
+    padding:28px 18px;
+    display:block;
+}
+
+nav li a:hover{
+    color:red;
+}
+
+.icons{
+    display:flex;
+    gap:10px;
+}
+
+.icon{
+    width:40px;
+    height:40px;
+    border:1px solid white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.hero{
+    text-align:center;
+    padding:90px 20px 50px;
+}
+
+.hero small{
+    color:red;
+    letter-spacing:4px;
+}
+
+.hero h1{
+    font-size:60px;
+    margin:15px 0;
+}
+
+.hero p{
+    color:#aaa;
+    max-width:600px;
+    margin:auto;
+    line-height:1.7;
+}
+
+.cars{
+    padding:30px 7% 80px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.card{
+    background:#1a1a1a;
+    border:1px solid #292929;
+    padding:20px;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    border-color:red;
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card h2{
+    margin:18px 0 8px;
+}
+
+.card p{
+    color:#999;
+    line-height:1.5;
+}
+
+.price{
+    color:red;
+    margin-top:15px;
+    font-size:20px;
+}
+
+@media(max-width:800px){
+    nav ul{
+        display:none;
+    }
+
+    nav{
+        padding:0 20px;
+    }
+
+    .cars{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+}
+</style>
+<link rel="stylesheet" href="assets/fx.css">
+<script>(function(d){d.documentElement.classList.add("fx-loading");setTimeout(function(){d.documentElement.classList.remove("fx-loading")},5000)})(document)</script>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo"><i>NI<span>SH</span>AL</i></div>
+
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cars.html">Cars</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="icons">
+        <div class="icon">♡</div>
+        <div class="icon">⌕</div>
+        <div class="icon">☰</div>
+    </div>
+</nav>
+
+<section class="hero">
+    <small>OUR COLLECTION</small>
+    <h1>CHOOSE YOUR <span>DRIVE</span></h1>
+    <p>
+        Explore a collection of powerful, luxurious and beautifully
+        engineered cars created for every kind of driver.
+    </p>
+</section>
+
+<section class="cars">
+
+    <div class="card">
+        <img src="car1.jpg">
+        <h2>Velocity GT</h2>
+        <p>A powerful sports machine built for speed and precision.</p>
+        <div class="price">$185,000</div>
+    </div>
+
+    <div class="card">
+        <img src="car2.jpg">
+        <h2>Phantom X</h2>
+        <p>Luxury, comfort and technology combined in one stunning car.</p>
+        <div class="price">$220,000</div>
+    </div>
+
+    <div class="card">
+        <img src="car3.jpg">
+        <h2>Raven RS</h2>
+        <p>A bold performance car designed to dominate the road.</p>
+        <div class="price">$195,000</div>
+    </div>
+
+    <div class="card">
+        <img src="car4.jpg">
+        <h2>Storm GT</h2>
+        <p>A perfect balance between aggressive design and performance.</p>
+        <div class="price">$160,000</div>
+    </div>
+
+    <div class="card">
+        <img src="car5.jpg">
+        <h2>Elite S</h2>
+        <p>Refined interiors with a smooth and powerful driving experience.</p>
+        <div class="price">$240,000</div>
+    </div>
+
+    <div class="card">
+        <img src="car6.jpg">
+        <h2>Vortex R</h2>
+        <p>Engineered for drivers who want pure excitement behind the wheel.</p>
+        <div class="price">$275,000</div>
+    </div>
+
+</section>
+
+<script src="assets/fx.js"></script>
+</body>
+</html>
+```

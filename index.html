@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NISHAL CARS</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #070707;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav {
+      height: 75px;
+      padding: 0 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10, 10, 10, 0.82);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      animation: navDrop 0.8s ease forwards;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: bold;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      color: red;
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 28px 18px;
+      color: white;
+      font-size: 14px;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    nav ul li a:hover {
+      color: red;
+    }
+
+    nav ul li a::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      width: 0;
+      height: 1px;
+      background: red;
+      transition: width 0.3s ease;
+    }
+
+    nav ul li a:hover::after {
+      width: calc(100% - 36px);
+    }
+
+    .dropdown {
+      position: absolute;
+      top: 75px;
+      left: 0;
+      width: 190px;
+      background: rgba(15, 15, 15, 0.96);
+      border-bottom: 2px solid red;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-12px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      overflow: hidden;
+    }
+
+    .dropdown a {
+      padding: 15px !important;
+    }
+
+    .dropdown a::after {
+      display: none;
+    }
+
+    .dropdown a:hover {
+      background: rgba(255, 0, 0, 0.08);
+      padding-left: 22px !important;
+    }
+
+    .menu:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .icons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .icon:hover {
+      color: red;
+      border-color: red;
+      transform: translateY(-4px) rotate(8deg);
+    }
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 110px 7% 60px;
+      overflow: hidden;
+      background: #070707;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 35% 40%, rgba(255, 0, 0, 0.14), transparent 50%),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.86), rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.2));
+      z-index: 1;
+    }
+
+    .hero-text {
+      width: 50%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text small {
+      display: inline-block;
+      color: red;
+      letter-spacing: 5px;
+      font-size: 12px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s forwards;
+    }
+
+    .hero-text h1 {
+      font-size: 68px;
+      line-height: 0.95;
+      margin: 22px 0;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.35s forwards;
+    }
+
+    .hero-text h1 span {
+      color: red;
+    }
+
+    .hero-text p {
+      color: #ccc;
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 30px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.55s forwards;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.75s forwards;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border: 1px solid red;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
+      z-index: 1;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      left: -105%;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      transition: left 0.35s ease;
+      z-index: -1;
+    }
+
+    .btn:first-child {
+      background: red;
+    }
+
+    .btn:hover {
+      color: black;
+      transform: translateY(-4px);
+    }
+
+    .btn:hover::before {
+      left: 0;
+    }
+
+    .car-info {
+      display: flex;
+      gap: 50px;
+      margin-top: 45px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.9s forwards;
+    }
+
+    .car-info h3 {
+      font-size: 25px;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .car-info div:hover h3 {
+      color: red;
+      transform: translateY(-4px);
+    }
+
+    .car-info p {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 6px;
+      letter-spacing: 1px;
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      color: #aaa;
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-align: center;
+    }
+
+    .scroll-down span {
+      display: block;
+      width: 1px;
+      height: 36px;
+      background: red;
+      margin: 10px auto 0;
+      animation: scrollLine 1.5s infinite;
+    }
+
+    .marquee {
+      background: red;
+      color: white;
+      overflow: hidden;
+      padding: 16px 0;
+      white-space: nowrap;
+      transform: rotate(-1deg) scale(1.02);
+      position: relative;
+      z-index: 5;
+    }
+
+    .marquee-track {
+      display: inline-block;
+      will-change: transform;
+      animation: marquee 22s linear infinite;
+    }
+
+    .marquee span {
+      font-size: 13px;
+      letter-spacing: 4px;
+      margin: 0 25px;
+    }
+
+    .performance {
+      padding: 90px 7%;
+      background: radial-gradient(circle at 85% 15%, rgba(255, 0, 0, 0.12), transparent 45%), #090909;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .performance-title {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .performance-title small {
+      color: red;
+      letter-spacing: 5px;
+      font-size: 11px;
+    }
+
+    .performance-title h2 {
+      font-size: 45px;
+      margin-top: 12px;
+    }
+
+    .performance-title span {
+      color: red;
+    }
+
+    .performance-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid #252525;
+      border-bottom: 1px solid #252525;
+    }
+
+    .performance-box {
+      text-align: center;
+      padding: 40px 15px;
+      border-right: 1px solid #252525;
+      transition: transform 0.35s ease, background 0.35s ease;
+    }
+
+    .performance-box:last-child {
+      border-right: none;
+    }
+
+    .performance-box:hover {
+      background: #101010;
+      transform: translateY(-7px);
+    }
+
+    .performance-box h3 {
+      font-size: 43px;
+      margin-bottom: 8px;
+    }
+
+    .performance-box h3 span {
+      color: red;
+    }
+
+    .performance-box p {
+      color: #777;
+      font-size: 10px;
+      letter-spacing: 3px;
+    }
+
+    .featured {
+      padding: 120px 7%;
+      background: radial-gradient(circle at 20% 50%, rgba(255, 0, 0, 0.1), transparent 45%), #0b0b0b;
+    }
+
+    .featured-box {
+      max-width: 1200px;
+      min-height: 520px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      border: 1px solid #252525;
+      overflow: hidden;
+    }
+
+    .featured-image {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .featured-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+
+    .featured-box:hover img {
+      transform: scale(1.06);
+    }
+
+    .featured-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 50%, #0b0b0b);
+    }
+
+    .featured-content {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      padding: 55px 45px;
+    }
+
+    .featured-content small {
+      color: red;
+      letter-spacing: 4px;
+      font-size: 11px;
+    }
+
+    .featured-content h2 {
+      font-size: 50px;
+      line-height: 0.95;
+      margin: 18px 0;
+    }
+
+    .featured-content h2 span {
+      color: red;
+    }
+
+    .featured-content p {
+      color: #888;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .featured-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid #222;
+      border-bottom: 1px solid #222;
+      margin-bottom: 30px;
+    }
+
+    .featured-stats div {
+      padding: 18px 10px;
+      border-right: 1px solid #222;
+    }
+
+    .featured-stats div:last-child {
+      border: none;
+    }
+
+    .featured-stats h3 {
+      font-size: 22px;
+    }
+
+    .featured-stats p {
+      margin: 5px 0 0;
+      font-size: 9px;
+      color: #666;
+      letter-spacing: 1px;
+    }
+
+    .details {
+      width: max-content;
+      padding: 14px 25px;
+      border: 1px solid red;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .details:hover {
+      background: red;
+      transform: translateY(-4px);
+    }
+
+    .experience {
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at center, rgba(255, 0, 0, 0.14), transparent 55%),
+        linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)),
+        url("pic12.jpg") center/cover;
+    }
+
+    .experience-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .experience-content small {
+      color: red;
+      letter-spacing: 5px;
+    }
+
+    .experience-content h2 {
+      font-size: clamp(45px, 7vw, 90px);
+      line-height: 0.9;
+      margin: 18px 0;
+    }
+
+    .experience-content h2 span {
+      color: red;
+    }
+
+    .experience-content p {
+      color: #bbb;
+      letter-spacing: 2px;
+    }
+
+    .why {
+      padding: 110px 7%;
+      background: #080808;
+      text-align: center;
+    }
+
+    .why-title small {
+      color: red;
+      letter-spacing: 5px;
+      font-size: 11px;
+    }
+
+    .why-title h2 {
+      font-size: 45px;
+      margin: 15px 0 55px;
+    }
+
+    .why-title h2 span {
+      color: red;
+    }
+
+    .why-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .why-card {
+      padding: 45px 30px;
+      background: radial-gradient(circle at top right, rgba(255, 0, 0, 0.1), transparent 45%), #101010;
+      border: 1px solid #222;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s ease, border-color 0.35s ease;
+    }
+
+    .why-card:hover {
+      transform: translateY(-10px);
+      border-color: red;
+    }
+
+    .why-card small {
+      color: red;
+      letter-spacing: 3px;
+    }
+
+    .why-card h3 {
+      font-size: 23px;
+      margin: 15px 0;
+    }
+
+    .why-card p {
+      color: #777;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .cta {
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at center, rgba(255, 0, 0, 0.14), transparent 55%),
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)),
+        url("pic15.jpg") center/cover;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .cta-content small {
+      color: red;
+      letter-spacing: 5px;
+      font-size: 11px;
+    }
+
+    .cta-content h2 {
+      font-size: clamp(50px, 8vw, 100px);
+      line-height: 0.85;
+      margin: 20px 0 35px;
+    }
+
+    .cta-content h2 span {
+      color: red;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 15px 32px;
+      border: 1px solid red;
+      letter-spacing: 2px;
+      font-size: 11px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background: red;
+      transform: translateY(-5px);
+    }
+
+    footer {
+      background: #050505;
+      padding: 70px 7% 25px;
+      border-top: 1px solid #1b1b1b;
+    }
+
+    .footer-top {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 55px;
+      border-bottom: 1px solid #1b1b1b;
+    }
+
+    .footer-brand .logo {
+      margin-bottom: 18px;
+    }
+
+    .footer-brand p {
+      color: #666;
+      max-width: 300px;
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    .footer-title {
+      color: white;
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: #666;
+      font-size: 13px;
+      transition: color 0.3s ease, padding-left 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: red;
+      padding-left: 5px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social {
+      width: 38px;
+      height: 38px;
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      color: #aaa;
+      font-size: 11px;
+      transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+    }
+
+    .social:hover {
+      color: white;
+      border-color: red;
+      background: red;
+      transform: translateY(-5px);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: auto;
+      padding-top: 22px;
+      display: flex;
+      justify-content: space-between;
+      color: #555;
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    @keyframes navDrop {
+      from {
+        opacity: 0;
+        transform: translateY(-25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scrollLine {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scaleY(0.6);
+      }
+      50% {
+        opacity: 1;
+        transform: scaleY(1);
+      }
+    }
+
+    @keyframes marquee {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        text-align: center;
+        justify-content: center;
+        padding: 120px 25px 60px;
+      }
+
+      .hero-text {
+        width: 100%;
+      }
+
+      .hero-text h1 {
+        font-size: 48px;
+      }
+
+      .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .car-info {
+        justify-content: center;
+        gap: 25px;
+      }
+
+      .performance-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .performance-box:nth-child(2) {
+        border-right: none;
+      }
+
+      .performance-box:nth-child(-n+2) {
+        border-bottom: 1px solid #252525;
+      }
+
+      .featured-box {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-image {
+        height: 350px;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 25px;
+      }
+
+      .icons {
+        gap: 5px;
+      }
+
+      .icon {
+        width: 35px;
+        height: 35px;
+      }
+
+      .hero-text h1 {
+        font-size: 42px;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 220px;
+      }
+
+      .car-info {
+        gap: 18px;
+      }
+
+      .car-info h3 {
+        font-size: 19px;
+      }
+
+      .performance {
+        padding: 70px 20px;
+      }
+
+      .performance-title h2 {
+        font-size: 34px;
+      }
+
+      .performance-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .performance-box h3 {
+        font-size: 32px;
+      }
+
+      .featured {
+        padding: 80px 20px;
+      }
+
+      .featured-content {
+        padding: 40px 25px;
+      }
+
+      .featured-content h2 {
+        font-size: 40px;
+      }
+
+      .experience {
+        min-height: 450px;
+      }
+
+      .why {
+        padding: 80px 20px;
+      }
+
+      .why-title h2 {
+        font-size: 34px;
+      }
+
+      .cta {
+        min-height: 430px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="fx.css">
+</head>
+<body>
+
+  <nav>
+    <div class="logo">
+      <i>NI<span>SH</span>AL</i>
+    </div>
+
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li class="menu">
+        <a href="#">Cars ▾</a>
+        <div class="dropdown">
+          <a href="collection.html">Sports Cars</a>
+          <a href="collection.html">Luxury Cars</a>
+          <a href="collection.html">Super Cars</a>
+          <a href="collection.html">New Arrivals</a>
+        </div>
+      </li>
+      <li><a href="about.html">About Us</a></li>
+      <li class="menu">
+        <a href="#">Services ▾</a>
+        <div class="dropdown">
+          <a href="#">Car Customization</a>
+          <a href="#">Test Drive</a>
+          <a href="#">Financing</a>
+        </div>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+
+    <div class="icons">
+      <div class="icon">♡</div>
+      <div class="icon">⌕</div>
+      <div class="icon">☰</div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+      <source src="car.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-text">
+      <small>THE FUTURE OF DRIVING</small>
+      <h1>
+        DRIVE<br>
+        <span>BEYOND</span><br>
+        LIMITS.
+      </h1>
+      <p>
+        Discover powerful machines built for those who
+        demand more from every journey. Experience bold
+        design, thrilling performance and unforgettable
+        driving.
+      </p>
+
+      <div class="buttons">
+        <a href="collection.html" class="btn">EXPLORE CARS</a>
+        <a href="collection.html" class="btn">VIEW COLLECTION</a>
+      </div>
+
+      <div class="car-info">
+        <div>
+          <h3>3.2s</h3>
+          <p>0–100 KM/H</p>
+        </div>
+        <div>
+          <h3>620 HP</h3>
+          <p>MAX POWER</p>
+        </div>
+        <div>
+          <h3>320</h3>
+          <p>KM/H TOP SPEED</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-down">
+      SCROLL
+      <span></span>
+    </div>
+  </section>
+
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>PERFORMANCE</span>
+      •
+      <span>LUXURY</span>
+      •
+      <span>PRECISION</span>
+      •
+      <span>POWER</span>
+      •
+      <span>DESIGN</span>
+      •
+      <span>NISHAL CARS</span>
+      •
+      <span>PERFORMANCE</span>
+      •
+      <span>LUXURY</span>
+      •
+      <span>PRECISION</span>
+      •
+      <span>POWER</span>
+      •
+      <span>DESIGN</span>
+      •
+      <span>NISHAL CARS</span>
+    </div>
+  </div>
+
+  <section class="performance">
+    <div class="performance-title">
+      <small>NISHAL PERFORMANCE</small>
+      <h2>NUMBERS THAT <span>SPEAK.</span></h2>
+    </div>
+
+    <div class="performance-grid">
+      <div class="performance-box">
+        <h3>15<span>+</span></h3>
+        <p>CARS</p>
+      </div>
+      <div class="performance-box">
+        <h3>620<span>+</span></h3>
+        <p>HORSEPOWER</p>
+      </div>
+      <div class="performance-box">
+        <h3>3.2<span>S</span></h3>
+        <p>0–100 KM/H</p>
+      </div>
+      <div class="performance-box">
+        <h3>320</h3>
+        <p>KM/H TOP SPEED</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured">
+    <div class="featured-box">
+      <div class="featured-image">
+        <img src="pic10.jpg" alt="Featured NISHAL Car" loading="lazy">
+      </div>
+
+      <div class="featured-content">
+        <small>FEATURED MACHINE</small>
+        <h2>
+          BUILT TO<br>
+          <span>DOMINATE.</span>
+        </h2>
+        <p>
+          Aggressive lines, powerful performance and
+          unmistakable presence. This is what happens
+          when design meets pure performance.
+        </p>
+
+        <div class="featured-stats">
+          <div>
+            <h3>620</h3>
+            <p>HP</p>
+          </div>
+          <div>
+            <h3>3.2s</h3>
+            <p>0–100</p>
+          </div>
+          <div>
+            <h3>320</h3>
+            <p>KM/H</p>
+          </div>
+        </div>
+
+        <a href="collection.html" class="details">VIEW COLLECTION →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="experience" id="experience">
+    <div class="experience-content">
+      <small>THE NISHAL EXPERIENCE</small>
+      <h2>
+        DRIVE<br>
+        <span>DIFFERENT.</span>
+      </h2>
+      <p>More than transportation. It's a statement.</p>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="why-title">
+      <small>THE NISHAL STANDARD</small>
+      <h2>MORE THAN A <span>CAR.</span></h2>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <small>01</small>
+        <h3>PERFORMANCE</h3>
+        <p>
+          Machines engineered to deliver power,
+          speed and an unforgettable experience
+          every time you hit the road.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <small>02</small>
+        <h3>DESIGN</h3>
+        <p>
+          Every curve, line and detail is created
+          to make an impression before the engine
+          even starts.
+        </p>
+      </div>
+
+      <div class="why-card">
+        <small>03</small>
+        <h3>EXPERIENCE</h3>
+        <p>
+          From the first glance to the first drive,
+          everything is designed to feel special.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="cta-content">
+      <small>YOUR NEXT MACHINE IS WAITING</small>
+      <h2>
+        READY TO<br>
+        <span>DRIVE?</span>
+      </h2>
+      <a href="collection.html" class="cta-button">EXPLORE COLLECTION →</a>
+    </div>
+  </section>
+
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <i>NI<span>SH</span>AL</i>
+        </div>
+        <p>
+          Discover powerful machines built for those
+          who demand more from every journey.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-title">EXPLORE</div>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="collection.html">Collection</a></li>
+          <li><a href="#experience">About Us</a></li>
+          <li><a href="#">Services</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-title">CARS</div>
+        <ul class="footer-links">
+          <li><a href="collection.html">Sports Cars</a></li>
+          <li><a href="collection.html">Luxury Cars</a></li>
+          <li><a href="collection.html">Super Cars</a></li>
+          <li><a href="collection.html">New Arrivals</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-title">FOLLOW US</div>
+        <div class="socials">
+          <a href="#" class="social">IG</a>
+          <a href="#" class="social">FB</a>
+          <a href="#" class="social">X</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 NISHAL CARS</span>
+      <span>BUILT FOR THOSE WHO DRIVE DIFFERENT.</span>
+    </div>
+  </footer>
+
+  <script src="fx.js"></script>
+</body>
+</html>

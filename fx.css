@@ -1,0 +1,134 @@
+/* =========================================================
+   NISHAL CARS - ANIMATION LAYER (additive, original design untouched)
+========================================================= */
+@property --fx-a{syntax:'<angle>';inherits:false;initial-value:0deg}
+
+/* ---------- first-paint cover + failsafe ---------- */
+html::before{content:"";position:fixed;inset:0;background:#070707;z-index:99997;pointer-events:none;animation:fxCoverOff .6s 2.6s forwards}
+html.fx-js::before{display:none}
+@keyframes fxCoverOff{to{opacity:0;visibility:hidden}}
+html.fx-loading *,html.fx-loading *::before,html.fx-loading *::after{animation-play-state:paused!important}
+
+/* ---------- loader ---------- */
+#fx-loader{position:fixed;inset:0;z-index:99998;background:#070707;display:flex;flex-direction:column;align-items:center;justify-content:center;clip-path:inset(0 0 0 0);transition:clip-path 1s cubic-bezier(.77,0,.18,1);overflow:hidden}
+#fx-loader.out{clip-path:inset(0 0 100% 0)}
+.fx-l-logo{display:flex;overflow:hidden;font:italic bold clamp(54px,10vw,120px) Arial,sans-serif;letter-spacing:2px;color:#fff;padding:0 .1em}
+.fx-l-logo b{display:inline-block;translate:0 115%;transition:translate .85s cubic-bezier(.2,.8,.2,1) calc(var(--i)*.08s + .15s)}
+.fx-l-logo b.r{color:red;text-shadow:0 0 30px rgba(255,0,0,.5)}
+#fx-loader.go .fx-l-logo b{translate:0 0}
+.fx-l-bar{position:relative;width:min(340px,62vw);height:2px;background:#222;margin-top:28px;overflow:hidden}
+.fx-l-bar i{position:absolute;inset:0;background:linear-gradient(90deg,#e00000,#ff7a00);transform-origin:left;transform:scaleX(var(--p,0))}
+.fx-l-tag{margin-top:18px;font:11px Arial,sans-serif;letter-spacing:7px;color:#666;opacity:0;transition:opacity .8s .9s}
+#fx-loader.go .fx-l-tag{opacity:1}
+.fx-l-num{position:absolute;right:6vw;bottom:6vh;font:bold 14px Arial,sans-serif;letter-spacing:4px;color:#888}
+.fx-l-streak{position:absolute;left:0;top:50%;width:40vw;height:2px;background:linear-gradient(90deg,transparent,#e00000,#fff,transparent);translate:-110% 0;transition:translate 1.3s cubic-bezier(.5,0,.2,1) .2s;opacity:.9}
+#fx-loader.go .fx-l-streak{translate:260% 0}
+
+/* ---------- page transition bars ---------- */
+#fx-wipe{position:fixed;inset:0;z-index:99996;pointer-events:none;display:flex}
+#fx-wipe i{flex:1;transform:scaleY(0);transform-origin:bottom;background:#0b0b0b;transition:transform .55s cubic-bezier(.77,0,.18,1) calc(var(--i)*.05s)}
+#fx-wipe i:nth-child(odd){background:#e00000}
+html.fx-leave #fx-wipe{pointer-events:all}
+html.fx-leave #fx-wipe i{transform:scaleY(1)}
+html.fx-enter #fx-wipe i{transform:scaleY(1);transform-origin:top;transition:none}
+html.fx-enter-go #fx-wipe i{transform:scaleY(0);transform-origin:top;transition:transform .65s cubic-bezier(.77,0,.18,1) calc(var(--i)*.05s)}
+
+/* ---------- scroll progress ---------- */
+#fx-progress{position:fixed;top:0;left:0;height:3px;width:100%;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#e00000,#ff7a00);box-shadow:0 0 14px rgba(255,0,0,.8);z-index:99990;pointer-events:none}
+
+/* ---------- cursor ---------- */
+.fx-cur,.fx-ring{position:fixed;left:0;top:0;pointer-events:none;z-index:100000;border-radius:50%;opacity:0;translate:-50% -50%;transition:opacity .3s,width .3s,height .3s,background .3s,border-color .3s}
+.fx-cur{width:7px;height:7px;background:#e00000;box-shadow:0 0 12px red}
+.fx-ring{width:38px;height:38px;border:1px solid rgba(255,255,255,.55)}
+.fx-ring.hov{width:72px;height:72px;background:rgba(255,0,0,.12);border-color:#e00000}
+.fx-ring.down{width:24px;height:24px;background:rgba(255,0,0,.35)}
+@media(hover:none),(pointer:coarse){.fx-cur,.fx-ring{display:none}}
+
+/* ---------- embers canvas ---------- */
+.fx-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9000}
+
+/* ---------- reveal system ---------- */
+.fx-pre{opacity:0;translate:0 50px}
+.fx-pre.fx-l{translate:-70px 0}
+.fx-pre.fx-r{translate:70px 0}
+.fx-pre.fx-z{translate:0 0;scale:.86}
+.fx-in{animation:fxUp 1s cubic-bezier(.2,.8,.2,1) var(--d,0s) backwards}
+.fx-in.fx-l{animation-name:fxLeft}
+.fx-in.fx-r{animation-name:fxRight}
+.fx-in.fx-z{animation-name:fxZoom}
+@keyframes fxUp{from{opacity:0;translate:0 50px;filter:blur(6px)}to{opacity:1;translate:0 0;filter:blur(0)}}
+@keyframes fxLeft{from{opacity:0;translate:-70px 0;filter:blur(6px)}to{opacity:1;translate:0 0;filter:blur(0)}}
+@keyframes fxRight{from{opacity:0;translate:70px 0;filter:blur(6px)}to{opacity:1;translate:0 0;filter:blur(0)}}
+@keyframes fxZoom{from{opacity:0;scale:.86}to{opacity:1;scale:1}}
+
+/* images: curtain wipe + slow ken-burns */
+.fx-pre-img{clip-path:inset(0 100% 0 0)}
+.fx-in-img{animation:fxClip 1.5s cubic-bezier(.77,0,.18,1) var(--d,0s) backwards,fxKen 18s ease-in-out 1.6s infinite alternate}
+@keyframes fxClip{from{clip-path:inset(0 100% 0 0);scale:1.3}to{clip-path:inset(0 0 0 0);scale:1}}
+@keyframes fxKen{from{scale:1}to{scale:1.1}}
+
+/* headline words */
+.fx-w{display:inline-block;overflow:hidden;vertical-align:top;padding:.12em .05em .22em;margin:-.12em -.05em -.22em}
+.fx-wi{display:inline-block;translate:0 118%;rotate:7deg;transform-origin:0 100%;transition:translate 1s cubic-bezier(.2,.8,.2,1) calc(var(--i)*.08s),rotate 1s cubic-bezier(.2,.8,.2,1) calc(var(--i)*.08s)}
+.fx-win .fx-wi{translate:0 0;rotate:0deg}
+
+/* ---------- navbar extras ---------- */
+nav ul li{animation:fxNav .8s cubic-bezier(.2,.8,.2,1) backwards}
+nav ul li:nth-child(1){animation-delay:.45s}nav ul li:nth-child(2){animation-delay:.55s}nav ul li:nth-child(3){animation-delay:.65s}nav ul li:nth-child(4){animation-delay:.75s}nav ul li:nth-child(5){animation-delay:.85s}
+nav .icons .icon{animation:fxNav .8s cubic-bezier(.2,.8,.2,1) backwards}
+nav .icons .icon:nth-child(1){animation-delay:.9s}nav .icons .icon:nth-child(2){animation-delay:1s}nav .icons .icon:nth-child(3){animation-delay:1.1s}
+nav .logo{animation:fxLogo 1s cubic-bezier(.2,.8,.2,1) .2s backwards}
+@keyframes fxNav{from{opacity:0;translate:0 -24px}to{opacity:1;translate:0 0}}
+@keyframes fxLogo{from{opacity:0;translate:-30px 0;filter:blur(6px)}to{opacity:1;translate:0 0;filter:blur(0)}}
+.logo span{animation:fxRed 2.6s ease-in-out infinite}
+@keyframes fxRed{0%,100%{text-shadow:0 0 0 rgba(255,0,0,0)}50%{text-shadow:0 0 18px rgba(255,0,0,.9)}}
+.logo:hover i{animation:fxGlitch .35s steps(2) 2}
+@keyframes fxGlitch{0%{translate:0 0}25%{translate:-3px 1px}50%{translate:3px -1px}75%{translate:-2px 0}100%{translate:0 0}}
+.menu:hover .dropdown a{animation:fxDrop .45s cubic-bezier(.2,.8,.2,1) backwards}
+.menu:hover .dropdown a:nth-child(2){animation-delay:.05s}.menu:hover .dropdown a:nth-child(3){animation-delay:.1s}.menu:hover .dropdown a:nth-child(4){animation-delay:.15s}
+@keyframes fxDrop{from{opacity:0;translate:-18px 0}to{opacity:1;translate:0 0}}
+.icon:active{scale:.88}
+
+/* ---------- hero extras ---------- */
+.hero h1 span,.hero-text h1 span,.hero-content h1 span{animation:fxGlow 3.2s ease-in-out infinite}
+@keyframes fxGlow{0%,100%{text-shadow:0 0 18px rgba(255,0,0,.25)}50%{text-shadow:0 0 46px rgba(255,0,0,.8),0 0 8px rgba(255,90,90,.55)}}
+.fx-hero-glow{position:absolute;inset:0;pointer-events:none;z-index:2;opacity:0;transition:opacity .5s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,30,30,.28),transparent 65%);mix-blend-mode:screen}
+.hero:hover .fx-hero-glow{opacity:1}
+.scroll-down,.scroll{animation:fxBob 2s ease-in-out infinite}
+@keyframes fxBob{0%,100%{opacity:.6}50%{opacity:1}}
+
+/* ---------- marquee ---------- */
+.marquee:hover .marquee-track{animation-play-state:paused}
+.car-row:hover{animation-play-state:paused}
+
+/* ---------- parallax backgrounds ---------- */
+@media(min-width:901px) and (hover:hover){.experience,.cta,.visual{background-attachment:fixed,fixed}}
+
+/* ---------- buttons ---------- */
+.fx-mag{transition:translate .35s cubic-bezier(.2,.8,.2,1),transform .35s ease,color .35s,background .35s,border-color .35s,box-shadow .35s,letter-spacing .4s,padding .3s,opacity .3s}
+.btn:not(:hover),.cta-button:not(:hover),.details:not(:hover),.details-btn:not(:hover),.send-btn:not(:hover){animation:fxBtn 2.8s ease-in-out infinite}
+@keyframes fxBtn{0%,100%{box-shadow:0 0 0 0 rgba(255,0,0,0)}50%{box-shadow:0 0 30px 2px rgba(255,0,0,.3)}}
+.fx-rip{position:absolute;width:12px;height:12px;border-radius:50%;pointer-events:none;background:rgba(255,255,255,.5);translate:-50% -50%;animation:fxRip .75s ease-out forwards}
+@keyframes fxRip{to{scale:26;opacity:0}}
+
+/* ---------- cards ---------- */
+.fx-spot{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .4s;z-index:1;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,40,40,.22),transparent 65%);mix-blend-mode:screen}
+*:hover>.fx-spot{opacity:1}
+.why-card h3,.value-card h3,.why-box h3,.car-name h3{transition:translate .4s cubic-bezier(.2,.8,.2,1)}
+.why-card:hover h3,.value-card:hover h3,.why-box:hover h3,.car-card:hover .car-name h3{translate:8px 0}
+.car-card::before,.story-image::before,.featured-image::before{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.2) 50%,transparent 65%);translate:-130% 0;transition:translate 1s cubic-bezier(.2,.8,.2,1)}
+.car-card:hover::before,.story-image:hover::before,.featured-box:hover .featured-image::before{translate:130% 0}
+.featured-box,.form-box{position:relative}
+.featured-box::after,.form-box::after{content:"";position:absolute;inset:0;padding:1px;pointer-events:none;z-index:4;background:conic-gradient(from var(--fx-a),transparent 0 72%,#e00000 86%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:fxSpin 5s linear infinite}
+@keyframes fxSpin{to{--fx-a:360deg}}
+
+/* ---------- forms ---------- */
+.input-group::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:#e00000;box-shadow:0 0 14px red;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.input-group:focus-within::after{transform:scaleX(1)}
+.input-group label{transition:color .3s,translate .3s,letter-spacing .3s}
+.input-group:focus-within label{color:#e00000;translate:6px 0;letter-spacing:3px}
+.input-group input:focus,.input-group textarea:focus,.input-group select:focus{translate:0 -2px}
+
+/* ---------- misc ---------- */
+.footer-links a,.info-card strong{transition:color .3s,padding .3s}
+.stat h2,.stat h3,.performance-box h3,.car-info h3,.featured-stats h3,.performance h3{font-variant-numeric:tabular-nums}

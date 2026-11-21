@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NISHAL CARS — About Us</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:#070707;
+    color:white;
+    overflow-x:hidden;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+
+/* ================= NAVBAR ================= */
+
+nav{
+    height:75px;
+    padding:0 50px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:rgba(10,10,10,.55);
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid rgba(255,255,255,.13);
+
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+
+    z-index:100;
+
+    animation:navDrop 1s ease forwards;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+    font-style:italic;
+}
+
+.logo span{
+    color:red;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:8px;
+}
+
+nav li{
+    position:relative;
+}
+
+nav li>a{
+    display:block;
+    padding:28px 18px;
+    font-size:14px;
+    transition:.3s;
+}
+
+nav li>a:hover{
+    color:red;
+}
+
+.dropdown{
+    position:absolute;
+    top:75px;
+    left:0;
+
+    width:190px;
+
+    background:rgba(15,15,15,.96);
+
+    border-bottom:2px solid red;
+
+    opacity:0;
+    visibility:hidden;
+
+    transform:translateY(-15px);
+
+    transition:.3s;
+}
+
+.dropdown a{
+    display:block;
+    padding:15px;
+}
+
+.dropdown a:hover{
+    background:#171717;
+    color:red;
+}
+
+.menu:hover .dropdown{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.icons{
+    display:flex;
+    gap:10px;
+}
+
+.icon{
+    width:40px;
+    height:40px;
+
+    border:1px solid #777;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:.35s;
+}
+
+.icon:hover{
+    color:red;
+    border-color:red;
+
+    transform:translateY(-4px) rotate(8deg);
+
+    box-shadow:0 0 20px rgba(255,0,0,.3);
+}
+
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:82vh;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    overflow:hidden;
+}
+
+.hero video{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transform:scale(1.05);
+
+    animation:videoZoom 12s ease-in-out infinite alternate;
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.55),
+            rgba(0,0,0,.82)
+        );
+}
+
+.hero::before{
+    content:"";
+
+    position:absolute;
+
+    width:450px;
+    height:450px;
+
+    background:red;
+
+    opacity:.07;
+
+    filter:blur(130px);
+
+    border-radius:50%;
+
+    animation:heroGlow 7s infinite alternate;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+
+    padding-top:70px;
+
+    animation:heroReveal 1.2s ease forwards;
+}
+
+.hero-content small{
+    color:red;
+
+    letter-spacing:6px;
+
+    font-size:11px;
+}
+
+.hero-content h1{
+    font-size:clamp(60px,9vw,115px);
+
+    line-height:.85;
+
+    margin:20px 0;
+}
+
+.hero-content h1 span{
+    color:red;
+
+    text-shadow:
+        0 0 25px rgba(255,0,0,.25);
+}
+
+.hero-content p{
+    color:#aaa;
+
+    letter-spacing:3px;
+
+    font-size:12px;
+}
+
+
+/* ================= MARQUEE ================= */
+
+.marquee{
+    background:red;
+
+    padding:15px 0;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    transform:rotate(-1deg) scale(1.02);
+
+    position:relative;
+
+    z-index:5;
+}
+
+.marquee-track{
+    display:inline-block;
+
+    animation:marquee 20s linear infinite;
+}
+
+.marquee span{
+    margin:0 25px;
+
+    font-size:12px;
+
+    letter-spacing:4px;
+}
+
+
+/* ================= STORY ================= */
+
+.story{
+    padding:130px 7%;
+
+    background:#080808;
+}
+
+.story-grid{
+    max-width:1150px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:80px;
+
+    align-items:center;
+}
+
+.story-image{
+    height:520px;
+
+    overflow:hidden;
+
+    position:relative;
+
+    border:1px solid #222;
+}
+
+.story-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    transition:1s;
+}
+
+.story-image:hover img{
+    transform:scale(1.08);
+}
+
+.story-image::after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        linear-gradient(
+            135deg,
+            transparent 55%,
+            rgba(255,0,0,.18)
+        );
+
+    pointer-events:none;
+}
+
+.story-content small{
+    color:red;
+
+    letter-spacing:5px;
+
+    font-size:11px;
+}
+
+.story-content h2{
+    font-size:58px;
+
+    line-height:.9;
+
+    margin:18px 0 25px;
+}
+
+.story-content h2 span{
+    color:red;
+}
+
+.story-content p{
+    color:#888;
+
+    line-height:1.8;
+
+    font-size:14px;
+
+    margin-bottom:18px;
+}
+
+.story-number{
+    margin-top:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+}
+
+.story-number strong{
+    font-size:55px;
+
+    color:red;
+}
+
+.story-number span{
+    color:#666;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+}
+
+
+/* ================= BIG TEXT ================= */
+
+.big-text{
+    padding:80px 7%;
+
+    background:#050505;
+
+    text-align:center;
+
+    overflow:hidden;
+}
+
+.big-text h2{
+    font-size:clamp(50px,10vw,145px);
+
+    line-height:.8;
+
+    color:#151515;
+
+    transition:.5s;
+}
+
+.big-text:hover h2{
+    color:#222;
+
+    text-shadow:
+        0 0 40px rgba(255,0,0,.12);
+}
+
+.big-text span{
+    color:red;
+}
+
+
+/* ================= VALUES ================= */
+
+.values{
+    padding:120px 7%;
+
+    background:
+        radial-gradient(
+            circle at 50% 0,
+            rgba(255,0,0,.08),
+            transparent 35%
+        ),
+        #090909;
+}
+
+.section-title{
+    text-align:center;
+
+    margin-bottom:60px;
+}
+
+.section-title small{
+    color:red;
+
+    letter-spacing:5px;
+
+    font-size:11px;
+}
+
+.section-title h2{
+    font-size:46px;
+
+    margin-top:15px;
+}
+
+.section-title h2 span{
+    color:red;
+}
+
+.values-grid{
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:20px;
+}
+
+.value-card{
+    min-height:300px;
+
+    padding:35px;
+
+    background:#101010;
+
+    border:1px solid #222;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.5s;
+}
+
+.value-card::before{
+    content:"";
+
+    position:absolute;
+
+    width:160px;
+    height:160px;
+
+    right:-90px;
+    top:-90px;
+
+    background:red;
+
+    opacity:.06;
+
+    filter:blur(30px);
+
+    border-radius:50%;
+
+    transition:.6s;
+}
+
+.value-card:hover{
+    transform:translateY(-12px);
+
+    border-color:red;
+
+    box-shadow:
+        0 20px 50px rgba(255,0,0,.12);
+}
+
+.value-card:hover::before{
+    transform:scale(2.5);
+}
+
+.value-card-number{
+    font-size:55px;
+
+    color:#222;
+
+    font-weight:bold;
+
+    transition:.4s;
+}
+
+.value-card:hover .value-card-number{
+    color:red;
+}
+
+.value-card h3{
+    font-size:25px;
+
+    margin:20px 0 12px;
+}
+
+.value-card p{
+    color:#777;
+
+    line-height:1.7;
+
+    font-size:13px;
+}
+
+
+/* ================= VISUAL SECTION ================= */
+
+.visual{
+    min-height:600px;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.55),
+            rgba(0,0,0,.8)
+        ),
+        url("cars/pic13.jpg") center/cover;
+
+    overflow:hidden;
+}
+
+.visual::before{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    background:red;
+
+    opacity:.08;
+
+    filter:blur(150px);
+
+    border-radius:50%;
+
+    animation:visualGlow 6s infinite alternate;
+}
+
+.visual-content{
+    position:relative;
+    z-index:2;
+}
+
+.visual-content small{
+    color:red;
+
+    letter-spacing:5px;
+}
+
+.visual-content h2{
+    font-size:clamp(55px,8vw,100px);
+
+    line-height:.85;
+
+    margin:20px 0;
+}
+
+.visual-content h2 span{
+    color:red;
+}
+
+.visual-content p{
+    color:#aaa;
+
+    letter-spacing:2px;
+}
+
+
+/* ================= STATS ================= */
+
+.stats{
+    padding:90px 7%;
+
+    background:#070707;
+}
+
+.stats-grid{
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    border-top:1px solid #222;
+
+    border-bottom:1px solid #222;
+}
+
+.stat{
+    text-align:center;
+
+    padding:40px 15px;
+
+    border-right:1px solid #222;
+
+    transition:.4s;
+}
+
+.stat:last-child{
+    border:none;
+}
+
+.stat:hover{
+    background:#0e0e0e;
+
+    transform:translateY(-7px);
+}
+
+.stat h3{
+    font-size:45px;
+}
+
+.stat h3 span{
+    color:red;
+}
+
+.stat p{
+    color:#666;
+
+    font-size:10px;
+
+    letter-spacing:3px;
+
+    margin-top:8px;
+}
+
+
+/* ================= CTA ================= */
+
+.cta{
+    min-height:500px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    position:relative;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.7),
+            rgba(0,0,0,.85)
+        ),
+        url("cars/pic15.jpg") center/cover;
+
+    overflow:hidden;
+}
+
+.cta::before{
+    content:"";
+
+    position:absolute;
+
+    width:500px;
+    height:500px;
+
+    background:red;
+
+    opacity:.08;
+
+    filter:blur(150px);
+
+    border-radius:50%;
+}
+
+.cta-content{
+    position:relative;
+    z-index:2;
+}
+
+.cta-content small{
+    color:red;
+
+    letter-spacing:5px;
+
+    font-size:11px;
+}
+
+.cta-content h2{
+    font-size:clamp(55px,8vw,100px);
+
+    line-height:.85;
+
+    margin:20px 0 35px;
+}
+
+.cta-content h2 span{
+    color:red;
+}
+
+.cta-button{
+    display:inline-block;
+
+    border:1px solid red;
+
+    padding:15px 30px;
+
+    font-size:11px;
+
+    letter-spacing:2px;
+
+    transition:.35s;
+}
+
+.cta-button:hover{
+    background:red;
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 0 35px rgba(255,0,0,.35);
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#050505;
+
+    padding:70px 7% 25px;
+
+    border-top:1px solid #1b1b1b;
+}
+
+.footer-top{
+    max-width:1200px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+
+    gap:50px;
+
+    padding-bottom:50px;
+
+    border-bottom:1px solid #1b1b1b;
+}
+
+.footer-brand p{
+    color:#666;
+
+    max-width:300px;
+
+    line-height:1.7;
+
+    font-size:13px;
+
+    margin-top:18px;
+}
+
+.footer-title{
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    margin-bottom:20px;
+}
+
+.footer-links{
+    list-style:none;
+}
+
+.footer-links li{
+    margin-bottom:12px;
+}
+
+.footer-links a{
+    color:#666;
+
+    font-size:13px;
+
+    transition:.3s;
+}
+
+.footer-links a:hover{
+    color:red;
+
+    padding-left:5px;
+}
+
+.socials{
+    display:flex;
+    gap:10px;
+}
+
+.social{
+    width:38px;
+    height:38px;
+
+    border:1px solid #333;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#aaa;
+
+    font-size:11px;
+
+    transition:.35s;
+}
+
+.social:hover{
+    background:red;
+
+    border-color:red;
+
+    color:white;
+
+    transform:translateY(-5px);
+}
+
+.footer-bottom{
+    max-width:1200px;
+
+    margin:auto;
+
+    padding-top:22px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#555;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+}
+
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes navDrop{
+
+    from{
+        opacity:0;
+        transform:translateY(-30px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+@keyframes videoZoom{
+
+    from{
+        transform:scale(1.05);
+    }
+
+    to{
+        transform:scale(1.12);
+    }
+
+}
+
+@keyframes heroGlow{
+
+    from{
+        transform:translate(-150px,-80px);
+    }
+
+    to{
+        transform:translate(180px,120px);
+    }
+
+}
+
+@keyframes heroReveal{
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+        filter:blur(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+        filter:blur(0);
+    }
+
+}
+
+@keyframes marquee{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-50%);
+    }
+
+}
+
+@keyframes visualGlow{
+
+    from{
+        transform:translate(-180px,-100px);
+    }
+
+    to{
+        transform:translate(180px,100px);
+    }
+
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    nav{
+        padding:0 20px;
+    }
+
+    nav ul{
+        display:none;
+    }
+
+    .story-grid{
+        grid-template-columns:1fr;
+        gap:50px;
+    }
+
+    .story-image{
+        height:400px;
+    }
+
+    .values-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stat:nth-child(2){
+        border-right:none;
+    }
+
+    .stat:nth-child(-n+2){
+        border-bottom:1px solid #222;
+    }
+
+    .footer-top{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+
+@media(max-width:600px){
+
+    .logo{
+        font-size:25px;
+    }
+
+    .icon{
+        width:35px;
+        height:35px;
+    }
+
+    .hero{
+        min-height:75vh;
+    }
+
+    .hero-content h1{
+        font-size:55px;
+    }
+
+    .story{
+        padding:80px 20px;
+    }
+
+    .story-content h2{
+        font-size:43px;
+    }
+
+    .story-image{
+        height:350px;
+    }
+
+    .big-text{
+        padding:60px 20px;
+    }
+
+    .values{
+        padding:80px 20px;
+    }
+
+    .section-title h2{
+        font-size:35px;
+    }
+
+    .stats{
+        padding:70px 20px;
+    }
+
+    .stat h3{
+        font-size:32px;
+    }
+
+    .visual{
+        min-height:450px;
+    }
+
+    .cta{
+        min-height:430px;
+    }
+
+    .footer-top{
+        grid-template-columns:1fr;
+        gap:35px;
+    }
+
+    .footer-bottom{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+
+}
+
+</style>
+<link rel="stylesheet" href="assets/fx.css">
+<script>(function(d){d.documentElement.classList.add("fx-loading");setTimeout(function(){d.documentElement.classList.remove("fx-loading")},5000)})(document)</script>
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        <i>NI<span>SH</span>AL</i>
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li class="menu">
+
+            <a href="#">Cars ▾</a>
+
+            <div class="dropdown">
+
+                <a href="collection.html">Sports Cars</a>
+                <a href="collection.html">Luxury Cars</a>
+                <a href="collection.html">Super Cars</a>
+                <a href="collection.html">New Arrivals</a>
+
+            </div>
+
+        </li>
+
+        <li>
+            <a href="about.html">About Us</a>
+        </li>
+
+        <li class="menu">
+
+            <a href="#">Services ▾</a>
+
+            <div class="dropdown">
+
+                <a href="#">Car Customization</a>
+                <a href="#">Test Drive</a>
+                <a href="#">Financing</a>
+
+            </div>
+
+        </li>
+
+        <li>
+            <a href="contact.html">Contact</a>
+        </li>
+
+    </ul>
+
+    <div class="icons">
+
+        <div class="icon">♡</div>
+        <div class="icon">⌕</div>
+        <div class="icon">☰</div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <video autoplay muted loop playsinline>
+
+        <source src="blah.mp4" type="video/mp4">
+
+    </video>
+
+
+    <div class="hero-content">
+
+        <small>
+            THE STORY BEHIND THE MACHINE
+        </small>
+
+        <h1>
+
+            WE DON'T<br>
+
+            <span>FOLLOW.</span>
+
+        </h1>
+
+        <p>
+            WE CREATE THE STANDARD.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- MARQUEE -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <span>PASSION</span> •
+        <span>POWER</span> •
+        <span>PRECISION</span> •
+        <span>DESIGN</span> •
+        <span>PERFORMANCE</span> •
+        <span>NISHAL CARS</span> •
+        <span>PASSION</span> •
+        <span>POWER</span> •
+        <span>PRECISION</span> •
+        <span>DESIGN</span> •
+        <span>PERFORMANCE</span> •
+        <span>NISHAL CARS</span>
+
+    </div>
+
+</div>
+
+
+
+<!-- STORY -->
+
+<section class="story">
+
+    <div class="story-grid">
+
+
+        <div class="story-image">
+
+            <img
+                src="cars/pic8.jpg"
+                alt="NISHAL Cars"
+            >
+
+        </div>
+
+
+        <div class="story-content">
+
+            <small>
+                OUR STORY
+            </small>
+
+            <h2>
+
+                BORN TO<br>
+
+                <span>STAND OUT.</span>
+
+            </h2>
+
+            <p>
+
+                NISHAL CARS was built around one simple idea:
+                ordinary isn't enough.
+
+            </p>
+
+            <p>
+
+                We believe a car should do more than take
+                you somewhere. It should create a feeling.
+                The sound. The shape. The presence. The
+                moment you turn the key.
+
+            </p>
+
+            <p>
+
+                That's why we focus on machines that combine
+                aggressive design, serious performance and
+                an experience that stays with you long after
+                the drive is over.
+
+            </p>
+
+
+            <div class="story-number">
+
+                <strong>
+                    01
+                </strong>
+
+                <span>
+                    WHERE<br>
+                    IT ALL STARTED
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- BIG TEXT -->
+
+<section class="big-text">
+
+    <h2>
+
+        DRIVE <span>YOUR</span><br>
+
+        OWN STORY.
+
+    </h2>
+
+</section>
+
+
+
+<!-- VALUES -->
+
+<section class="values">
+
+    <div class="section-title">
+
+        <small>
+            WHAT DRIVES US
+        </small>
+
+        <h2>
+            BUILT AROUND <span>PASSION.</span>
+        </h2>
+
+    </div>
+
+
+    <div class="values-grid">
+
+
+        <div class="value-card">
+
+            <div class="value-card-number">
+                01
+            </div>
+
+            <h3>
+                PERFORMANCE
+            </h3>
+
+            <p>
+
+                We believe power should be felt.
+                Every machine is selected for the
+                experience it creates behind the wheel.
+
+            </p>
+
+        </div>
+
+
+        <div class="value-card">
+
+            <div class="value-card-number">
+                02
+            </div>
+
+            <h3>
+                DESIGN
+            </h3>
+
+            <p>
+
+                Some cars disappear into traffic.
+                Ours are made to stop people in their tracks.
+
+            </p>
+
+        </div>
+
+
+        <div class="value-card">
+
+            <div class="value-card-number">
+                03
+            </div>
+
+            <h3>
+                EXPERIENCE
+            </h3>
+
+            <p>
+
+                From the first look to the first drive,
+                every detail should feel unforgettable.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- VISUAL -->
+
+<section class="visual">
+
+    <div class="visual-content">
+
+        <small>
+            THE NISHAL MINDSET
+        </small>
+
+        <h2>
+
+            NEVER<br>
+
+            <span>SETTLE.</span>
+
+        </h2>
+
+        <p>
+            Different roads. Different machines. One mindset.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- STATS -->
+
+<section class="stats">
+
+    <div class="stats-grid">
+
+        <div class="stat">
+
+            <h3>
+                15<span>+</span>
+            </h3>
+
+            <p>
+                MACHINES
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h3>
+                620<span>+</span>
+            </h3>
+
+            <p>
+                HORSEPOWER
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h3>
+                320
+            </h3>
+
+            <p>
+                KM/H
+            </p>
+
+        </div>
+
+
+        <div class="stat">
+
+            <h3>
+                01
+            </h3>
+
+            <p>
+                MINDSET
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- CTA -->
+
+<section class="cta">
+
+    <div class="cta-content">
+
+        <small>
+            YOUR NEXT CHAPTER
+        </small>
+
+        <h2>
+
+            FIND YOUR<br>
+
+            <span>MACHINE.</span>
+
+        </h2>
+
+        <a
+            href="collection.html"
+            class="cta-button"
+        >
+
+            EXPLORE COLLECTION →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer id="footer">
+
+    <div class="footer-top">
+
+
+        <div class="footer-brand">
+
+            <div class="logo">
+
+                <i>
+                    NI<span>SH</span>AL
+                </i>
+
+            </div>
+
+            <p>
+
+                Machines built for those who demand
+                more from every journey.
+
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">
+                EXPLORE
+            </div>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collection.html">
+                        Collection
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">
+                        About Us
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">
+                CARS
+            </div>
+
+            <ul class="footer-links">
+
+                <li>
+                    <a href="collection.html">
+                        Sports Cars
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collection.html">
+                        Luxury Cars
+                    </a>
+                </li>
+
+                <li>
+                    <a href="collection.html">
+                        Super Cars
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div>
+
+            <div class="footer-title">
+                FOLLOW US
+            </div>
+
+            <div class="socials">
+
+                <a href="#" class="social">
+                    IG
+                </a>
+
+                <a href="#" class="social">
+                    FB
+                </a>
+
+                <a href="#" class="social">
+                    X
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 NISHAL CARS
+        </span>
+
+        <span>
+            BUILT FOR THOSE WHO DRIVE DIFFERENT.
+        </span>
+
+    </div>
+
+</footer>
+
+
+<script src="assets/fx.js"></script>
+</body>
+</html>

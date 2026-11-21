@@ -1,0 +1,1292 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NISHAL CARS — Contact</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#050505;
+    color:#fff;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#e00000;
+    filter:blur(180px);
+    opacity:.12;
+    top:20%;
+    left:-250px;
+    pointer-events:none;
+    z-index:-1;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    height:75px;
+    padding:0 50px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(10,10,10,.48);
+    backdrop-filter:blur(15px);
+    -webkit-backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.13);
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:100;
+    animation:navDrop 1s ease forwards;
+}
+
+.logo{
+    font-size:30px;
+    font-weight:bold;
+    font-style:italic;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:red;
+}
+
+nav ul{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    list-style:none;
+}
+
+nav ul li{
+    position:relative;
+}
+
+nav ul li a{
+    display:block;
+    padding:28px 18px;
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
+    position:relative;
+}
+
+nav ul li a:hover{
+    color:red;
+}
+
+nav ul li a::after{
+    content:"";
+    position:absolute;
+    left:18px;
+    bottom:18px;
+    width:0;
+    height:1px;
+    background:red;
+    transition:.3s;
+}
+
+nav ul li a:hover::after{
+    width:calc(100% - 36px);
+}
+
+.dropdown{
+    position:absolute;
+    top:75px;
+    left:0;
+    width:190px;
+    background:rgba(15,15,15,.95);
+    border-bottom:2px solid red;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-15px);
+    transition:.3s;
+    overflow:hidden;
+}
+
+.dropdown a{
+    padding:15px!important;
+}
+
+.dropdown a::after{
+    display:none;
+}
+
+.dropdown a:hover{
+    background:rgba(255,0,0,.08);
+    padding-left:22px!important;
+}
+
+.menu:hover .dropdown{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.icons{
+    display:flex;
+    gap:10px;
+}
+
+.icon{
+    width:40px;
+    height:40px;
+    border:1px solid rgba(255,255,255,.6);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.35s;
+    color:white;
+}
+
+.icon:hover{
+    color:red;
+    border-color:red;
+    transform:translateY(-4px) rotate(8deg);
+    box-shadow:0 0 20px rgba(255,0,0,.3);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    height:88vh;
+    min-height:650px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    padding:0 7% 90px;
+}
+
+.hero video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:-3;
+    animation:heroZoom 12s ease-out forwards;
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            to top,
+            #050505 0%,
+            rgba(0,0,0,.35) 50%,
+            rgba(0,0,0,.45) 100%
+        );
+    z-index:-2;
+}
+
+.hero-red{
+    position:absolute;
+    width:500px;
+    height:500px;
+    right:-180px;
+    top:25%;
+    border-radius:50%;
+    background:#e00000;
+    filter:blur(170px);
+    opacity:.2;
+    z-index:-1;
+}
+
+.hero-small{
+    color:#e00000;
+    font-size:12px;
+    letter-spacing:5px;
+    font-weight:bold;
+    margin-bottom:18px;
+    animation:fadeUp 1s .3s both;
+}
+
+.hero h1{
+    font-size:clamp(60px,10vw,150px);
+    line-height:.82;
+    letter-spacing:-6px;
+    font-weight:900;
+    animation:fadeUp 1s .5s both;
+}
+
+.hero h1 span{
+    color:transparent;
+    -webkit-text-stroke:1px rgba(255,255,255,.8);
+}
+
+.hero-bottom{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-top:30px;
+    animation:fadeUp 1s .7s both;
+}
+
+.hero-bottom p{
+    max-width:430px;
+    color:#aaa;
+    font-size:14px;
+    line-height:1.8;
+}
+
+.scroll{
+    font-size:10px;
+    letter-spacing:3px;
+    color:#888;
+}
+
+/* ================= MARQUEE ================= */
+
+.marquee{
+    height:65px;
+    overflow:hidden;
+    background:#e00000;
+    display:flex;
+    align-items:center;
+    transform:rotate(-1deg) scale(1.03);
+}
+
+.marquee-track{
+    white-space:nowrap;
+    display:flex;
+    gap:40px;
+    animation:marquee 18s linear infinite;
+}
+
+.marquee span{
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:4px;
+}
+
+/* ================= CONTACT INTRO ================= */
+
+.contact-intro{
+    padding:150px 7% 100px;
+    position:relative;
+}
+
+.section-label{
+    color:#e00000;
+    font-size:11px;
+    letter-spacing:4px;
+    font-weight:bold;
+    margin-bottom:25px;
+}
+
+.contact-intro h2{
+    font-size:clamp(45px,7vw,105px);
+    line-height:.9;
+    max-width:1000px;
+    letter-spacing:-4px;
+}
+
+.contact-intro h2 span{
+    color:#777;
+}
+
+.contact-intro p{
+    max-width:600px;
+    margin-top:35px;
+    color:#888;
+    line-height:1.8;
+}
+
+/* ================= CONTACT GRID ================= */
+
+.contact-section{
+    padding:40px 7% 130px;
+    display:grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap:70px;
+}
+
+/* INFO SIDE */
+
+.info-side{
+    position:relative;
+}
+
+.info-side h3{
+    font-size:42px;
+    margin-bottom:40px;
+    letter-spacing:-2px;
+}
+
+.info-card{
+    border-top:1px solid #292929;
+    padding:25px 0;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    transition:.4s;
+}
+
+.info-card:last-child{
+    border-bottom:1px solid #292929;
+}
+
+.info-card:hover{
+    padding-left:15px;
+    border-color:#e00000;
+}
+
+.info-card small{
+    color:#666;
+    font-size:10px;
+    letter-spacing:3px;
+}
+
+.info-card div:last-child{
+    text-align:right;
+    color:#ddd;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.info-card strong{
+    color:#fff;
+}
+
+.socials{
+    display:flex;
+    gap:12px;
+    margin-top:35px;
+}
+
+.socials a{
+    width:45px;
+    height:45px;
+    border:1px solid #333;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    text-decoration:none;
+    font-size:11px;
+    transition:.3s;
+}
+
+.socials a:hover{
+    background:#e00000;
+    border-color:#e00000;
+    transform:translateY(-6px);
+}
+
+/* FORM */
+
+.form-box{
+    background:#0b0b0b;
+    border:1px solid #202020;
+    padding:50px;
+    position:relative;
+    overflow:hidden;
+}
+
+.form-box:before{
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    background:#e00000;
+    filter:blur(150px);
+    opacity:.08;
+    right:-100px;
+    top:-100px;
+}
+
+.form-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.form-top h3{
+    font-size:32px;
+}
+
+.form-top span{
+    font-size:10px;
+    color:#666;
+    letter-spacing:2px;
+}
+
+.input-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+}
+
+.input-group{
+    position:relative;
+    margin-bottom:25px;
+}
+
+.input-group label{
+    display:block;
+    color:#666;
+    font-size:10px;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.input-group input,
+.input-group textarea,
+.input-group select{
+    width:100%;
+    background:#111;
+    border:1px solid #252525;
+    color:#fff;
+    padding:18px;
+    outline:none;
+    font-size:14px;
+    transition:.3s;
+    font-family:inherit;
+}
+
+.input-group textarea{
+    height:145px;
+    resize:none;
+}
+
+.input-group select{
+    appearance:none;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus{
+    border-color:#e00000;
+    box-shadow:0 0 25px rgba(224,0,0,.08);
+}
+
+.send-btn{
+    width:100%;
+    height:60px;
+    border:0;
+    background:#e00000;
+    color:#fff;
+    font-weight:bold;
+    letter-spacing:3px;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+    transition:.4s;
+}
+
+.send-btn:before{
+    content:"";
+    position:absolute;
+    width:0;
+    height:100%;
+    background:#fff;
+    left:-10%;
+    top:0;
+    transform:skewX(-20deg);
+    transition:.5s;
+    opacity:.15;
+}
+
+.send-btn:hover:before{
+    width:120%;
+}
+
+.send-btn:hover{
+    letter-spacing:6px;
+    box-shadow:0 15px 40px rgba(224,0,0,.2);
+}
+
+/* ================= BIG VISUAL ================= */
+
+.visual{
+    min-height:620px;
+    margin:0 7% 150px;
+    position:relative;
+    overflow:hidden;
+}
+
+.visual img{
+    width:100%;
+    height:620px;
+    object-fit:cover;
+    filter:brightness(.55);
+    transition:1s;
+}
+
+.visual:hover img{
+    transform:scale(1.06);
+    filter:brightness(.7);
+}
+
+.visual-overlay{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:7%;
+    background:linear-gradient(
+        90deg,
+        rgba(0,0,0,.85),
+        transparent
+    );
+}
+
+.visual-overlay small{
+    color:#e00000;
+    letter-spacing:4px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.visual-overlay h2{
+    font-size:clamp(50px,8vw,110px);
+    line-height:.85;
+    letter-spacing:-5px;
+    max-width:700px;
+}
+
+.visual-overlay h2 span{
+    color:transparent;
+    -webkit-text-stroke:1px white;
+}
+
+/* ================= LOCATION ================= */
+
+.location{
+    padding:0 7% 140px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+}
+
+.location h2{
+    font-size:clamp(45px,6vw,80px);
+    line-height:.9;
+    letter-spacing:-3px;
+}
+
+.location h2 span{
+    color:#e00000;
+}
+
+.location-text{
+    color:#777;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.location-box{
+    margin-top:30px;
+    padding:25px;
+    border:1px solid #252525;
+    background:#0b0b0b;
+}
+
+.location-box strong{
+    display:block;
+    margin-bottom:8px;
+    color:#fff;
+}
+
+.location-box span{
+    color:#777;
+    font-size:13px;
+}
+
+/* ================= FINAL CTA ================= */
+
+.final{
+    margin:0 5% 80px;
+    min-height:450px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    padding:7%;
+}
+
+.final img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:brightness(.35);
+    transition:1s;
+}
+
+.final:hover img{
+    transform:scale(1.04);
+}
+
+.final:after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        90deg,
+        rgba(0,0,0,.9),
+        rgba(0,0,0,.25)
+    );
+}
+
+.final-content{
+    position:relative;
+    z-index:2;
+}
+
+.final small{
+    color:#e00000;
+    letter-spacing:4px;
+    font-weight:bold;
+}
+
+.final h2{
+    font-size:clamp(45px,7vw,90px);
+    line-height:.9;
+    margin:20px 0 30px;
+    letter-spacing:-4px;
+}
+
+.final a{
+    display:inline-flex;
+    align-items:center;
+    gap:20px;
+    color:#fff;
+    text-decoration:none;
+    border-bottom:1px solid #e00000;
+    padding-bottom:10px;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:50px 7%;
+    border-top:1px solid #191919;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:#555;
+    font-size:11px;
+}
+
+.footer-logo{
+    color:#fff;
+    font-weight:bold;
+    letter-spacing:4px;
+}
+
+.footer-logo span{
+    color:#e00000;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes heroZoom{
+    from{transform:scale(1.05);}
+    to{transform:scale(1);}
+}
+
+@keyframes navDrop{
+    from{
+        opacity:0;
+        transform:translateY(-30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes marquee{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    nav ul{
+        gap:2px;
+    }
+
+    nav ul li a{
+        padding:28px 10px;
+        font-size:12px;
+    }
+
+    .icons{
+        gap:5px;
+    }
+
+    .icon{
+        width:35px;
+        height:35px;
+    }
+
+    .contact-section{
+        grid-template-columns:1fr;
+    }
+
+    .location{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        letter-spacing:-3px;
+    }
+}
+
+@media(max-width:650px){
+
+    nav{
+        padding:0 5%;
+        height:70px;
+    }
+
+    .logo{
+        font-size:19px;
+    }
+
+    nav ul{
+        display:none;
+    }
+
+    .hero{
+        height:80vh;
+        min-height:580px;
+        padding:0 6% 55px;
+    }
+
+    .hero h1{
+        font-size:60px;
+    }
+
+    .hero-bottom{
+        display:block;
+    }
+
+    .scroll{
+        display:none;
+    }
+
+    .contact-intro{
+        padding:100px 6% 70px;
+    }
+
+    .contact-intro h2{
+        letter-spacing:-2px;
+    }
+
+    .contact-section{
+        padding:20px 6% 90px;
+    }
+
+    .form-box{
+        padding:28px 20px;
+    }
+
+    .input-row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .visual{
+        margin:0 5% 90px;
+        min-height:480px;
+    }
+
+    .visual img{
+        height:480px;
+    }
+
+    .visual-overlay h2{
+        font-size:55px;
+        letter-spacing:-3px;
+    }
+
+    .location{
+        padding:0 6% 90px;
+    }
+
+    .final{
+        margin:0 5% 50px;
+        min-height:400px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:15px;
+        text-align:center;
+    }
+}
+
+.hero h1 span.red{
+    color:#e00000;
+    -webkit-text-stroke:0;
+}
+</style>
+<link rel="stylesheet" href="assets/fx.css">
+<script>(function(d){d.documentElement.classList.add("fx-loading");setTimeout(function(){d.documentElement.classList.remove("fx-loading")},5000)})(document)</script>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+    <div class="logo">
+        <i>NI<span>SH</span>AL</i>
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li class="menu">
+
+            <a href="#">Cars ▾</a>
+
+            <div class="dropdown">
+
+                <a href="collection.html">Sports Cars</a>
+                <a href="collection.html">Luxury Cars</a>
+                <a href="collection.html">Super Cars</a>
+                <a href="collection.html">New Arrivals</a>
+
+            </div>
+
+        </li>
+
+        <li>
+            <a href="about.html">About Us</a>
+        </li>
+
+        <li class="menu">
+
+            <a href="#">Services ▾</a>
+
+            <div class="dropdown">
+
+                <a href="#">Car Customization</a>
+                <a href="#">Test Drive</a>
+                <a href="#">Financing</a>
+
+            </div>
+
+        </li>
+
+        <li>
+            <a href="contact.html">Contact</a>
+        </li>
+
+    </ul>
+
+    <div class="icons">
+
+        <div class="icon">♡</div>
+        <div class="icon">⌕</div>
+        <div class="icon">☰</div>
+
+    </div>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <video autoplay muted loop playsinline>
+        <source src="blah.mp4" type="video/mp4">
+    </video>
+
+    <div class="hero-red"></div>
+
+    <div>
+
+        <div class="hero-small">
+            LET'S TALK CARS
+        </div>
+
+        <h1>
+            CONTACT<br>
+            <span>NI<span class="red">SH</span>AL.</span>
+        </h1>
+
+        <div class="hero-bottom">
+
+            <p>
+                Looking for something extraordinary?
+                Your next drive starts with one conversation.
+            </p>
+
+            <div class="scroll">
+                SCROLL TO CONNECT ↓
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MARQUEE ================= -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <span>DRIVE DIFFERENT</span>
+        <span>✦</span>
+        <span>MAKE IT YOURS</span>
+        <span>✦</span>
+        <span>NO ORDINARY CARS</span>
+        <span>✦</span>
+        <span>DRIVE DIFFERENT</span>
+        <span>✦</span>
+        <span>MAKE IT YOURS</span>
+        <span>✦</span>
+        <span>NO ORDINARY CARS</span>
+        <span>✦</span>
+
+    </div>
+
+</div>
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="contact-intro">
+
+    <div class="section-label">
+        GET IN TOUCH
+    </div>
+
+    <h2>
+        YOUR NEXT<br>
+        <span>STATEMENT</span><br>
+        STARTS HERE.
+    </h2>
+
+    <p>
+        Whether you're searching for your dream machine,
+        looking to sell something special, or simply want
+        to talk cars — NISHAL is ready.
+    </p>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section class="contact-section">
+
+    <div class="info-side">
+
+        <h3>
+            FIND<br>
+            YOUR WAY.
+        </h3>
+
+        <div class="info-card">
+
+            <div>
+                <small>CALL</small>
+            </div>
+
+            <div>
+                <strong>+92 300 0000000</strong><br>
+                Mon — Sat / 10:00 — 20:00
+            </div>
+
+        </div>
+
+        <div class="info-card">
+
+            <div>
+                <small>EMAIL</small>
+            </div>
+
+            <div>
+                <strong>hello@nishalcars.com</strong><br>
+                We usually reply within 24 hours.
+            </div>
+
+        </div>
+
+        <div class="info-card">
+
+            <div>
+                <small>SHOWROOM</small>
+            </div>
+
+            <div>
+                <strong>Hyderabad, Pakistan</strong><br>
+                Visit. Feel. Drive.
+            </div>
+
+        </div>
+
+        <div class="socials">
+
+            <a href="#">IG</a>
+            <a href="#">FB</a>
+            <a href="#">WA</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="form-box">
+
+        <div class="form-top">
+
+            <h3>START A CONVERSATION.</h3>
+
+            <span>01 — 04</span>
+
+        </div>
+
+        <form>
+
+            <div class="input-row">
+
+                <div class="input-group">
+
+                    <label>YOUR NAME</label>
+
+                    <input
+                        type="text"
+                        placeholder="Enter your name"
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>EMAIL</label>
+
+                    <input
+                        type="email"
+                        placeholder="you@email.com"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="input-row">
+
+                <div class="input-group">
+
+                    <label>PHONE</label>
+
+                    <input
+                        type="tel"
+                        placeholder="+92"
+                    >
+
+                </div>
+
+                <div class="input-group">
+
+                    <label>WHAT ARE YOU LOOKING FOR?</label>
+
+                    <select>
+
+                        <option>Select an option</option>
+                        <option>Buy a car</option>
+                        <option>Sell a car</option>
+                        <option>Custom car</option>
+                        <option>General inquiry</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="input-group">
+
+                <label>MESSAGE</label>
+
+                <textarea
+                    placeholder="Tell us what you're looking for..."
+                ></textarea>
+
+            </div>
+
+
+            <button class="send-btn" type="submit">
+                SEND INQUIRY →
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- ================= VISUAL ================= -->
+
+<section class="visual">
+
+    <img src="cars/pic13.jpg" alt="Nishal Car">
+
+    <div class="visual-overlay">
+
+        <small>NOT JUST A SHOWROOM</small>
+
+        <h2>
+            COME FOR<br>
+            THE <span>CARS.</span><br>
+            STAY FOR<br>
+            THE FEELING.
+        </h2>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LOCATION ================= -->
+
+<section class="location">
+
+    <div>
+
+        <div class="section-label">
+            THE DESTINATION
+        </div>
+
+        <h2>
+            WHERE<br>
+            <span>DRIVE</span><br>
+            BEGINS.
+        </h2>
+
+    </div>
+
+
+    <div class="location-text">
+
+        <p>
+            Step into the NISHAL experience and leave ordinary
+            behind. Our showroom is built for people who don't
+            just want a car — they want something that feels
+            different the moment they arrive.
+        </p>
+
+        <div class="location-box">
+
+            <strong>NISHAL CARS SHOWROOM</strong>
+
+            <span>
+                Hyderabad, Sindh, Pakistan
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FINAL CTA ================= -->
+
+<section class="final">
+
+    <img src="cars/pic15.jpg" alt="Luxury Car">
+
+    <div class="final-content">
+
+        <small>READY?</small>
+
+        <h2>
+            LET'S MAKE<br>
+            SOMETHING<br>
+            <span>UNFORGETTABLE.</span>
+        </h2>
+
+        <a href="collection.html">
+            EXPLORE THE COLLECTION →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        NI<span>SH</span>AL CARS
+    </div>
+
+    <div>
+        © 2026 NISHAL CARS. ALL RIGHTS RESERVED.
+    </div>
+
+    <div>
+        DRIVE DIFFERENT.
+    </div>
+
+</footer>
+
+<script src="assets/fx.js"></script>
+</body>
+</html>
+```
